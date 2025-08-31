@@ -1,0 +1,1271 @@
+{
+  "kpis": {
+    "total_revenue": 457333.83999999997,
+    "total_units": 12309.0,
+    "top_rep_revenue": {
+      "name": "Andrew",
+      "revenue": 99315.75
+    },
+    "top_rep_twe": {
+      "name": "Adam K.",
+      "twe": NaN
+    }
+  },
+  "reps": [
+    {
+      "name": "Andrew",
+      "revenue": 99315.75,
+      "units": 2693.0,
+      "avg_ticket": 68.25824742268041,
+      "share_sales_pct": 0.21716247807072403,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Gabriel",
+      "revenue": 61310.0,
+      "units": 1598.0,
+      "avg_ticket": 71.04287369640788,
+      "share_sales_pct": 0.13405961824298854,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Mason",
+      "revenue": 55477.0,
+      "units": 1501.0,
+      "avg_ticket": 86.6828125,
+      "share_sales_pct": 0.12130525919533967,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Rajah",
+      "revenue": 54904.25,
+      "units": 1418.0,
+      "avg_ticket": 82.6871234939759,
+      "share_sales_pct": 0.1200528917781374,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Sam",
+      "revenue": 52124.75,
+      "units": 1325.0,
+      "avg_ticket": 80.19192307692308,
+      "share_sales_pct": 0.11397527460465205,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jackson",
+      "revenue": 45104.75,
+      "units": 1228.0,
+      "avg_ticket": 71.48137876386687,
+      "share_sales_pct": 0.09862543738289736,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Josiah",
+      "revenue": 37295.25,
+      "units": 1082.0,
+      "avg_ticket": 73.70602766798419,
+      "share_sales_pct": 0.08154929012031999,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Amir",
+      "revenue": 11367.0,
+      "units": 324.0,
+      "avg_ticket": 73.33548387096774,
+      "share_sales_pct": 0.024854928732148927,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Milton",
+      "revenue": 6857.0,
+      "units": 185.0,
+      "avg_ticket": 77.04494382022472,
+      "share_sales_pct": 0.014993423622446133,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Brandon",
+      "revenue": 5861.5,
+      "units": 161.0,
+      "avg_ticket": 64.41208791208791,
+      "share_sales_pct": 0.012816676762865395,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "blank",
+      "revenue": 4825.09,
+      "units": 133.0,
+      "avg_ticket": 17.171138790035588,
+      "share_sales_pct": 0.010550476649617706,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Edwin",
+      "revenue": 4167.5,
+      "units": 118.0,
+      "avg_ticket": 65.1171875,
+      "share_sales_pct": 0.009112599233855077,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Melvin",
+      "revenue": 2824.75,
+      "units": 78.0,
+      "avg_ticket": 62.772222222222226,
+      "share_sales_pct": 0.0061765602125571995,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kaleo",
+      "revenue": 2236.75,
+      "units": 54.0,
+      "avg_ticket": 69.8984375,
+      "share_sales_pct": 0.004890847351247833,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Sadie",
+      "revenue": 2161.5,
+      "units": 68.0,
+      "avg_ticket": 69.7258064516129,
+      "share_sales_pct": 0.004726306717211217,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Keith",
+      "revenue": 1981.25,
+      "units": 55.0,
+      "avg_ticket": 76.20192307692308,
+      "share_sales_pct": 0.0043321745007979294,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Precious",
+      "revenue": 1965.75,
+      "units": 71.0,
+      "avg_ticket": 51.73026315789474,
+      "share_sales_pct": 0.004298282410066135,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "George",
+      "revenue": 1885.5,
+      "units": 49.0,
+      "avg_ticket": 110.91176470588235,
+      "share_sales_pct": 0.004122808843535392,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kai",
+      "revenue": 1481.75,
+      "units": 47.0,
+      "avg_ticket": 51.0948275862069,
+      "share_sales_pct": 0.0032399745446346157,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Sheree",
+      "revenue": 1391.0,
+      "units": 36.0,
+      "avg_ticket": 81.82352941176471,
+      "share_sales_pct": 0.0030415418198662058,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Shaquan",
+      "revenue": 1342.5,
+      "units": 49.0,
+      "avg_ticket": 53.7,
+      "share_sales_pct": 0.002935492374673171,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Matthew",
+      "revenue": 1239.75,
+      "units": 34.0,
+      "avg_ticket": 77.484375,
+      "share_sales_pct": 0.002710820611918856,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Colbi",
+      "revenue": 197.75,
+      "units": 1.0,
+      "avg_ticket": 197.75,
+      "share_sales_pct": 0.0004323974801427334,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Alex",
+      "revenue": 15.75,
+      "units": 1.0,
+      "avg_ticket": 15.75,
+      "share_sales_pct": 3.443873735650089e-05,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Liv",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Logan",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Lucia",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Owen B.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Noah",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Nick S.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Marlie",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Marques",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Nee",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Nic Sosa",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Mic S.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Naomi",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Najiah G.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Myles",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Matthew M.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Miles",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Paul",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Miguel",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Micaela L.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Mike W.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Roxy",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Paul S.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Tanya",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Zion James",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Zari",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Xavier L.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Will G.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Wes",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Victor",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Vasia",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Tyler",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Ty",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Trini",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Travis A.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Tracy",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Tayna",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Tamika W.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Rebekka",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Taj",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Sydnee",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Spank",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Soul",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Solomon",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Siyaka",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Shayla Stacks",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Seth",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Sebby",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Sam S",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Ryan",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Roy B.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Lily",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Litty",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Adam K.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Ligardy",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Carlos R.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Dustin A.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Donnie",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Dom",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Devon D.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Davri",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Danny",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Danni G.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "DJ G.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Cynthia",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Colin",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Cheyenne",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Chanoa",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Cassie",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Caprice",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Lauren",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Cam",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Byant",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Bryan",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Briana",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Brian",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Bri",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "BP",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Ash",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Asante",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Anayah",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Amari R.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Ama",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Alexis",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "EM",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Eduardo",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Em",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Eric O.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kristian",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kit",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kirsten I.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kim",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kendall S.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kemi R.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kathy P.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Karen",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kam",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Josh",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Joe",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jeune",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jessica",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jen",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jeff",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jediael P.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jay",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "James",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Jaina H.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "J",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Ian D.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Hector",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Griffin",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Gio C.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Geo",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Gabrielle",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "GC H.",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    },
+    {
+      "name": "Kiara",
+      "revenue": 0.0,
+      "units": 0.0,
+      "avg_ticket": 0.0,
+      "share_sales_pct": 0.0,
+      "hours": 0.0,
+      "twe": null
+    }
+  ],
+  "notes": [
+    "Joined Attributed Orders (dutchie_order_id) to Sales Transactions (TransId).",
+    "Avg Ticket = Revenue / Orders. TWE = (Avg Ticket \u00d7 % of Sales) \u00f7 Hours."
+  ]
+}
