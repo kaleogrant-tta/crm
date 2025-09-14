@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product PPI + Sell‑Through + Revenue CRM</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 226, 226, 0.6), rgba(255, 255, 255, 0.6) 40%, rgba(229, 235, 255, 0.6) 75%) fixed;
+      background-size: 200% 200%;
+      animation: moveBg 30s linear infinite;
+      color: #4a2c2a;
+      margin: 0;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+    @keyframes moveBg {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .kpi-card {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(255,250,240,0.9), rgba(255,230,237,0.9));
+      border-radius: 16px;
+      padding: 14px 20px;
+      margin: 8px;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.1),
+        0 6px 12px rgba(0,0,0,0.05),
+        inset 0 0 8px rgba(255,255,255,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.15),
+        0 10px 20px rgba(0,0,0,0.08),
+        inset 0 0 10px rgba(255,255,255,0.6);
+    }
+    .kpi-card h2 { margin:0; font-size:0.75em; color:#5d4037; text-transform:uppercase; letter-spacing:0.05em; }
+    .kpi-card p { margin:8px 0 0; font-size:1.4em; font-weight:bold; color:#4a2c2a; }
+
+    .controls {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .controls select, .controls button {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.85em;
+    }
+    .heatmap {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      overflow-x: auto;
+      transform-origin: top left;
+    }
+    .heatmap-row { display:flex; align-items:stretch; margin-bottom:2px; }
+    .heatmap-cell { flex:1; min-width:80px; padding:8px; text-align:center; border:1px solid rgba(255,255,255,0.3); font-size:0.85em; }
+    .heatmap-header-cell { background: rgba(230,215,200,0.7); color:#4a2c2a; font-size:0.9em; position: sticky; top:0; z-index:3; }
+    .heatmap-name-cell { min-width:160px; text-align:left; font-weight:600; background: rgba(250,240,235,0.8); position: sticky; left:0; z-index:2; }
+    .overlay {
+      position: absolute;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,245,235,0.95), rgba(255,230,240,0.95));
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 6px rgba(0, 0, 0, 0.05), inset 0 0 4px rgba(255,255,255,0.5);
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+      max-width: 300px;
+      display: none;
+    }
+    .overlay.visible { opacity: 1; transform: translateY(0) scale(1); display:block; }
+    @media (max-width: 600px) {
+      .header { flex-direction: column; align-items: flex-start; }
+      .kpi-card { width: 100%; margin: 6px 0; }
+      .heatmap-cell { min-width: 60px; padding: 6px; font-size: 0.7em; }
+      .heatmap-name-cell { min-width: 120px; font-size: 0.75em; }
+      .heatmap-header-cell { font-size: 0.75em; padding: 6px; }
+      .overlay { max-width: 90%; font-size: 0.8em; padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1 id="pageTitle" style="margin:0; font-size:2.2em; color:#d88a00;">Product CRM</h1>
+    <div id="kpiContainer"></div>
+  </div>
+  <div class="controls">
+    <label for="categoryFilter">Category:</label>
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+    </select>
+    <button id="zoomIn">Zoom In</button>
+    <button id="zoomOut">Zoom Out</button>
+  </div>
+  <div id="heatmapContainer" class="heatmap"></div>
+  <div id="overlay" class="overlay"></div>
+
+<script>
+  let metricDefs = [];
+  let metricRanges = [];
+  let productsData = [];
+  let fullMetricRanges = [];
+  let zoomLevel = 1;
+  let hideTimeout;
+  const heatmapContainer = document.getElementById('heatmapContainer');
+  const overlay = document.getElementById('overlay');
+
+  function colorScale(r) {
+    r = Math.max(0, Math.min(1, r));
+    const hue = 240 * (1 - r);
+    const saturation = 70;
+    const lightness = 85 - 15 * r;
+    return `hsl(${hue.toFixed(0)}, ${saturation}%, ${lightness}%)`;
+  }
+
+  function formatNumber(value, decimals = 0) {
+    if (!Number.isFinite(value)) return 'N/A';
+    return value.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+
+  
+async function loadData() {
+  // Load data from an embedded JSON blob if available; fall back to fetch for local development.
+  let data;
+  const embedded = document.getElementById('productData');
+  if (embedded) {
+    try {
+      data = JSON.parse(embedded.textContent);
+    } catch (err) {
+      console.error('Failed to parse embedded data', err);
+    }
+  }
+  if (!data) {
+    const url = `product_crm_data.json?v=${Date.now()}`;
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load data');
+    data = await res.json();
+  }
+  productsData = data.products || [];
+  // update page title based on meta.title if available
+  if (data.meta && data.meta.title) {
+    const titleElem = document.getElementById('pageTitle');
+    if (titleElem) titleElem.textContent = data.meta.title;
+    document.title = data.meta.title;
+  }
+  // create a tiny badge to show as_of date
+  if (data.meta && data.meta.as_of) {
+    const badge = document.createElement('div');
+    badge.style.cssText = 'position:fixed;right:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:8px;font:12px/1.2 system-ui;z-index:9999';
+    badge.textContent = `Data as_of: ${data.meta.as_of}`;
+    document.body.appendChild(badge);
+  }
+  updateCategoryFilter();
+  // compute full metric ranges once based on full dataset for consistent colour scaling
+  metricDefs = [
+    { key:'ppi_index', label:'PPI' },
+    { key:'sell_through_pct', label:'Sell‑Through' },
+    { key:'revenue_share', label:'Revenue Share' },
+    { key:'bei', label:'BEI' }
+  ];
+  fullMetricRanges = metricDefs.map(def => {
+    const values = productsData.map(p => p[def.key]).filter(v => Number.isFinite(v));
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    return { min, max };
+  });
+  render(productsData);
+}
+
+
+  function updateCategoryFilter() {
+    const select = document.getElementById('categoryFilter');
+    // extract unique categories
+    const categories = Array.from(new Set(productsData.map(p => p.category)));
+    categories.sort();
+    categories.forEach(cat => {
+      const option = document.createElement('option');
+      option.value = cat;
+      option.textContent = cat;
+      select.appendChild(option);
+    });
+    select.addEventListener('change', () => {
+      const value = select.value;
+      const filtered = value === 'all' ? productsData : productsData.filter(p => p.category === value);
+      render(filtered);
+    });
+  }
+
+  function render(data) {
+    // Sort products by BEI descending
+    data = data.slice().sort((a, b) => (b.bei || 0) - (a.bei || 0));
+    // compute KPIs
+    const totalRevenue = data.reduce((sum, p) => sum + (p.revenue || 0), 0);
+    const totalUnits = data.reduce((sum, p) => sum + (p.units || 0), 0);
+    document.getElementById('kpiContainer').innerHTML = [
+      kpiCard('Total Revenue', `$${formatNumber(totalRevenue)}`),
+      kpiCard('Total Units', `${formatNumber(totalUnits)}`)
+    ].join('');
+
+    // use precomputed full metric ranges for consistent colour scaling across filters
+    metricRanges = fullMetricRanges;
+
+    // clear container
+    heatmapContainer.innerHTML = '';
+
+    // header row
+    const headerRow = document.createElement('div');
+    headerRow.className = 'heatmap-row';
+    const corner = document.createElement('div');
+    corner.className = 'heatmap-cell heatmap-name-cell';
+    corner.textContent = 'Product';
+    headerRow.appendChild(corner);
+    metricDefs.forEach(def => {
+      const cell = document.createElement('div');
+      cell.className = 'heatmap-cell heatmap-header-cell';
+      cell.textContent = def.label;
+      headerRow.appendChild(cell);
+    });
+    heatmapContainer.appendChild(headerRow);
+
+    // data rows
+    data.forEach(product => {
+      const row = document.createElement('div');
+      row.className = 'heatmap-row';
+      const nameCell = document.createElement('div');
+      nameCell.className = 'heatmap-cell heatmap-name-cell';
+      nameCell.textContent = product.product_name;
+      row.appendChild(nameCell);
+      metricDefs.forEach((def, idx) => {
+        const cell = document.createElement('div');
+        cell.className = 'heatmap-cell';
+        const value = product[def.key];
+        const range = metricRanges[idx];
+        let ratio = 0;
+        if (Number.isFinite(value) && range.max !== range.min) {
+          if (def.key === 'bei') {
+            const lv = Math.log(value + 1);
+            const lmin = Math.log(range.min + 1);
+            const lmax = Math.log(range.max + 1);
+            ratio = (lv - lmin) / (lmax - lmin);
+          } else {
+            ratio = (value - range.min) / (range.max - range.min);
+          }
+        }
+        cell.style.backgroundColor = colorScale(ratio);
+        cell.dataset.value = value;
+        cell.dataset.metric = def.label;
+        cell.dataset.product = product.product_name;
+        cell.addEventListener('mouseenter', e => showOverlay(e, product));
+        cell.addEventListener('mouseleave', hideOverlay);
+        row.appendChild(cell);
+      });
+      heatmapContainer.appendChild(row);
+    });
+
+    // apply current zoom level
+    heatmapContainer.style.transform = `scale(${zoomLevel})`;
+  }
+
+  function kpiCard(title, value) {
+    return `<div class="kpi-card"><h2>${title}</h2><p>${value}</p></div>`;
+  }
+
+  function showOverlay(event, product) {
+    clearTimeout(hideTimeout);
+    let html = `<h3>${product.product_name}</h3>`;
+    metricDefs.forEach((def, idx) => {
+      const value = product[def.key];
+      const range = metricRanges[idx];
+      let ratio = 0;
+      if (Number.isFinite(value) && range.max !== range.min) {
+        if (def.key === 'bei') {
+          const lv = Math.log(value + 1);
+          const lmin = Math.log(range.min + 1);
+          const lmax = Math.log(range.max + 1);
+          ratio = (lv - lmin) / (lmax - lmin);
+        } else {
+          ratio = (value - range.min) / (range.max - range.min);
+        }
+      }
+      let display;
+      // Format percentages as before
+      if (def.key === 'sell_through_pct' || def.key === 'revenue_share') {
+        display = `${(value * 100).toFixed(1)}%`;
+      } else if (def.key === 'ppi_index') {
+        // Avoid rounding very small PPI values down to zero by using more precision
+        // Use three decimal places for PPI values below 0.01 and two decimals otherwise
+        if (Number.isFinite(value)) {
+          display = value < 0.01 ? value.toFixed(3) : value.toFixed(2);
+        } else {
+          display = 'N/A';
+        }
+      } else {
+        display = Number.isFinite(value) ? value.toFixed(2) : 'N/A';
+      }
+      html += `
+        <div class="metric-row" style="display:flex;align-items:center;margin-bottom:6px;font-size:0.85em;color:#4a2c2a;">
+          <div class="metric-name" style="flex:0 0 90px;text-align:left;font-weight:600;">${def.label}</div>
+          <div class="metric-bar-container" style="flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,0.6);margin-right:8px;overflow:hidden;">
+            <div class="metric-bar" style="height:100%;border-radius:4px;width:${(ratio * 100).toFixed(1)}%;background-color:${colorScale(ratio)};"></div>
+          </div>
+          <div class="metric-value" style="flex:0 0 45px;text-align:right;font-weight:600;">${display}</div>
+        </div>`;
+    });
+    // show additional details such as category and units on hand
+    if (product.category) {
+      html += `<div style="margin-top:6px;font-size:0.8em;color:#4a2c2a;"><strong>Category:</strong> ${product.category}</div>`;
+    }
+    if (product.units_on_hand !== undefined) {
+      html += `<div style="font-size:0.8em;color:#4a2c2a;"><strong>Units On Hand:</strong> ${formatNumber(product.units_on_hand)}</div>`;
+    }
+    overlay.innerHTML = html;
+    overlay.classList.add('visible');
+    const rect = event.target.getBoundingClientRect();
+    overlay.style.top = `${window.scrollY + rect.top - overlay.offsetHeight - 10}px`;
+    overlay.style.left = `${window.scrollX + rect.left + 10}px`;
+  }
+
+  function hideOverlay() {
+    hideTimeout = setTimeout(() => {
+      overlay.classList.remove('visible');
+    }, 600);
+  }
+
+  document.getElementById('zoomIn').addEventListener('click', () => {
+    zoomLevel = Math.min(2, zoomLevel + 0.1);
+    heatmapContainer.style.transform = `scale(${zoomLevel})`;
+  });
+  document.getElementById('zoomOut').addEventListener('click', () => {
+    zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+    heatmapContainer.style.transform = `scale(${zoomLevel})`;
+  });
+
+  window.addEventListener('DOMContentLoaded', loadData);
+</script>
+<script id="productData" type="application/json">{"meta": {"title": "Accessories PPI + Sell\u2011Through + Revenue CRM", "as_of": "2025-09-13", "currency": "USD", "geography": "NY Adult\u2011Use", "notes": "Generated from Product Sales and Current Inventory On Hand report"}, "kpis": {"total_revenue": 97507.92999999998, "total_units": 21604}, "products": [{"product_name": "Lighter", "category": "Accessories", "revenue": 17110.07, "units": 6474, "avg_unit_cost": 1.62, "ppi_index": 0.621729666996439, "sell_through_pct": 0.758968347010551, "revenue_share": 0.1754736255810169, "bei": 1.220736901099008, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 2056}, {"product_name": "Rolling Papers | Black", "category": "Accessories", "revenue": 5025.79, "units": 920, "avg_unit_cost": 3.44, "ppi_index": 1.320216083004784, "sell_through_pct": 0.414041404140414, "revenue_share": 0.05154237198964229, "bei": 0.31361639164254423, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 1302}, {"product_name": "Battery | 510", "category": "Accessories", "revenue": 24317.5, "units": 2004, "avg_unit_cost": 5.15, "ppi_index": 1.9764862870565807, "sell_through_pct": 0.795553791186979, "revenue_share": 0.24938997269247748, "bei": 0.4025091377546222, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 515}, {"product_name": "Lighter", "category": "Accessories", "revenue": 69.0, "units": 23, "avg_unit_cost": 1.2, "ppi_index": 0.46054049407143627, "sell_through_pct": 0.046, "revenue_share": 0.0007076347533990314, "bei": 0.09988263918626178, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 477}, {"product_name": "Tta Jet Pocket Lighter", "category": "Accessories", "revenue": 20349.78, "units": 5359, "avg_unit_cost": 1.584146, "ppi_index": 0.6079694846010746, "sell_through_pct": 0.9185807336304422, "revenue_share": 0.20869871814528318, "bei": 1.510899406790422, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 475}, {"product_name": "Bic Lighter", "category": "Accessories", "revenue": 1328.7, "units": 444, "avg_unit_cost": 1.0, "ppi_index": 0.3837837450595302, "sell_through_pct": 0.5677749360613811, "revenue_share": 0.013626584012192652, "bei": 1.4794137150683941, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 338}, {"product_name": "Lemon", "category": "Accessories", "revenue": 2754.9, "units": 363, "avg_unit_cost": 2.9, "ppi_index": 1.1129728606726377, "sell_through_pct": 0.5960591133004927, "revenue_share": 0.028253086697666546, "bei": 0.535555838208182, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 246}, {"product_name": "Elements King Size Rice Papers", "category": "Accessories", "revenue": 1427.95, "units": 494, "avg_unit_cost": 1.32, "ppi_index": 0.5065945434785799, "sell_through_pct": 0.6997167138810199, "revenue_share": 0.014644449943712274, "bei": 1.3812164439757841, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 212}, {"product_name": "Mint", "category": "Accessories", "revenue": 3001.11, "units": 409, "avg_unit_cost": 2.9, "ppi_index": 1.1129728606726377, "sell_through_pct": 0.6715927750410509, "revenue_share": 0.030778112098164744, "bei": 0.6034224182566017, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 200}, {"product_name": "Strawberry Magic", "category": "Accessories", "revenue": 2966.75, "units": 408, "avg_unit_cost": 2.9, "ppi_index": 1.1129728606726377, "sell_through_pct": 0.6766169154228856, "revenue_share": 0.030425730502124295, "bei": 0.6079365807841572, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 195}, {"product_name": "The Travel Agency Keychain", "category": "Accessories", "revenue": 85.5, "units": 43, "avg_unit_cost": 2.0, "ppi_index": 0.7675674901190604, "sell_through_pct": 0.21608040201005024, "revenue_share": 0.0008768517596466259, "bei": 0.2815132282068553, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 156}, {"product_name": "Classic | King Size Slim", "category": "Accessories", "revenue": 2933.4, "units": 984, "avg_unit_cost": 1.2, "ppi_index": 0.46054049407143627, "sell_through_pct": 0.8864864864864865, "revenue_share": 0.03008370703798143, "bei": 1.9248828233310145, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 126}, {"product_name": "Petals Lotus Cones 2pk", "category": "Accessories", "revenue": 776.99, "units": 98, "avg_unit_cost": 4.0, "ppi_index": 1.535134980238121, "sell_through_pct": 0.47572815533980584, "revenue_share": 0.007968480102079905, "bei": 0.3098933718949025, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 108}, {"product_name": "1 1/4 Half-Gram New York Pre-Rolled Cones - Refined White [21 Cones Per Pack]", "category": "Accessories", "revenue": 93.2, "units": 12, "avg_unit_cost": 3.15, "ppi_index": 1.2089187969375201, "sell_through_pct": 0.12, "revenue_share": 0.0009558196958955033, "bei": 0.09926225012299307, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 88}, {"product_name": "T-Shirt | Gray | Medium", "category": "Accessories", "revenue": 76.0, "units": 2, "avg_unit_cost": 15.45, "ppi_index": 5.929458861169741, "sell_through_pct": 0.031746031746031744, "revenue_share": 0.0007794237863525563, "bei": 0.005353950923570285, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 61}, {"product_name": "1 Gram King Size Pre Rolled Tubes With Natural Wood Filter Tips [5 Tubes Per Pack]", "category": "Accessories", "revenue": 10.0, "units": 2, "avg_unit_cost": 2.47, "ppi_index": 0.9479458502970397, "sell_through_pct": 0.03333333333333333, "revenue_share": 0.00010255576136217846, "bei": 0.03516375257393479, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 58}, {"product_name": "French Orange Papers | 32pk", "category": "Accessories", "revenue": 1825.5, "units": 616, "avg_unit_cost": 1.668409, "ppi_index": 0.6403082543110258, "sell_through_pct": 0.9194029850746268, "revenue_share": 0.018721554236665678, "bei": 1.4358755784960293, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 54}, {"product_name": "T-Shirt | Gray | Large", "category": "Accessories", "revenue": 38.0, "units": 1, "avg_unit_cost": 15.45, "ppi_index": 5.929458861169741, "sell_through_pct": 0.02, "revenue_share": 0.00038971189317627816, "bei": 0.00337298908184928, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 49}, {"product_name": "Beanie | Black", "category": "Accessories", "revenue": 319.5, "units": 22, "avg_unit_cost": 14.44, "ppi_index": 5.541837278659616, "sell_through_pct": 0.34375, "revenue_share": 0.003276656575521602, "bei": 0.06202816551898859, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 42}, {"product_name": "Minis Natural Brown Artisan Pre Rolled Tubes With Spiral Filter Tips [10 Tubes Per Pack]", "category": "Accessories", "revenue": 6.0, "units": 2, "avg_unit_cost": 1.36, "ppi_index": 0.5219458932809611, "sell_through_pct": 0.045454545454545456, "revenue_share": 6.153345681730708e-05, "bei": 0.087086700057773, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 42}, {"product_name": "Half Gram 1 1/4 Natural Brown Artisan Pre Rolled Tubes With Spiral Filter Tips [10 Tubes Per Pack]", "category": "Accessories", "revenue": 23.75, "units": 5, "avg_unit_cost": 1.34, "ppi_index": 0.5142702183797705, "sell_through_pct": 0.11363636363636363, "revenue_share": 0.00024356993323517386, "bei": 0.22096625387793148, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 39}, {"product_name": "2.5\" Glass Hand Pipe | Orange", "category": "Accessories", "revenue": 71.4, "units": 12, "avg_unit_cost": 1.1, "ppi_index": 0.4221621195654833, "sell_through_pct": 0.24, "revenue_share": 0.0007322481361259543, "bei": 0.5685019779771421, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 38}, {"product_name": "T-Shirt | Beige | Xs", "category": "Accessories", "revenue": 38.0, "units": 1, "avg_unit_cost": 15.85, "ppi_index": 6.082972359193554, "sell_through_pct": 0.027777777777777776, "revenue_share": 0.00038971189317627816, "bei": 0.004566481012493109, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 35}, {"product_name": "Unbleached Cones | 70s L 8pk", "category": "Accessories", "revenue": 880.8, "units": 298, "avg_unit_cost": 1.273423, "ppi_index": 0.48871904798494215, "sell_through_pct": 0.8975903614457831, "revenue_share": 0.00903311146078068, "bei": 1.8366183293789657, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 34}, {"product_name": "Aluminum Multi-Hitter With Cooling Spiral | Black", "category": "Accessories", "revenue": 1375.2, "units": 77, "avg_unit_cost": 8.0, "ppi_index": 3.070269960476242, "sell_through_pct": 0.7, "revenue_share": 0.014103468302526782, "bei": 0.22799298075124969, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 33}, {"product_name": "Unbleached Cones | 6pk", "category": "Accessories", "revenue": 2777.93, "units": 935, "avg_unit_cost": 1.093765, "ppi_index": 0.4197692279150371, "sell_through_pct": 0.9669079627714581, "revenue_share": 0.02848927261608364, "bei": 2.3034274512546307, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 32}, {"product_name": "T-Shirt | Beige | Small", "category": "Accessories", "revenue": 114.0, "units": 3, "avg_unit_cost": 15.85, "ppi_index": 6.082972359193554, "sell_through_pct": 0.09375, "revenue_share": 0.0011691356795288344, "bei": 0.015411873417164244, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 29}, {"product_name": "T-Shirt | Teal | Medium", "category": "Accessories", "revenue": 38.0, "units": 1, "avg_unit_cost": 15.85, "ppi_index": 6.082972359193554, "sell_through_pct": 0.03333333333333333, "revenue_share": 0.00038971189317627816, "bei": 0.005479777214991731, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 29}, {"product_name": "King Size White Rolling Papers With Filter Tips", "category": "Accessories", "revenue": 151.05, "units": 51, "avg_unit_cost": 1.04, "ppi_index": 0.39913509486191145, "sell_through_pct": 0.6538461538461539, "revenue_share": 0.0015491047753757058, "bei": 1.6381575117376352, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 27}, {"product_name": "Original | Tips | 50ct", "category": "Accessories", "revenue": 839.3, "units": 850, "avg_unit_cost": 12.545882, "ppi_index": 4.814905579034949, "sell_through_pct": 0.9703196347031964, "revenue_share": 0.008607505051127638, "bei": 0.20152412519326648, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 26}, {"product_name": "Bucket Hat | Cloud", "category": "Accessories", "revenue": 2157.01, "units": 81, "avg_unit_cost": 13.866049, "ppi_index": 5.321564214398954, "sell_through_pct": 0.7714285714285715, "revenue_share": 0.02212138028158326, "bei": 0.14496274785922145, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 24}, {"product_name": "Petals Mini Lotus Cones 3pk", "category": "Accessories", "revenue": 1816.8, "units": 229, "avg_unit_cost": 4.0, "ppi_index": 1.535134980238121, "sell_through_pct": 0.9196787148594378, "revenue_share": 0.018632330724280582, "bei": 0.5990865472408053, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 20}, {"product_name": "T-Shirt | Black | Xl", "category": "Accessories", "revenue": 76.0, "units": 2, "avg_unit_cost": 18.1, "ppi_index": 6.946485785577497, "sell_through_pct": 0.10526315789473684, "revenue_share": 0.0007794237863525563, "bei": 0.015153440335728805, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 17}, {"product_name": "Petals Variety Mini Rose Cones 3pk", "category": "Accessories", "revenue": 1690.88, "units": 189, "avg_unit_cost": 4.5, "ppi_index": 1.727026852767886, "sell_through_pct": 0.9174757281553398, "revenue_share": 0.017340948577208033, "bei": 0.5312457803912615, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 17}, {"product_name": "Deadly Flower Rolling Papers + Tips", "category": "Accessories", "revenue": 942.17, "units": 190, "avg_unit_cost": 2.25, "ppi_index": 0.863513426383943, "sell_through_pct": 0.9178743961352657, "revenue_share": 0.009662496168260367, "bei": 1.0629532420578163, "category_mix": {"Accessories": 1.0}, "history": [], "units_on_hand": 17}]}</script>
+</body>
+</html>
